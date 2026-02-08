@@ -1,33 +1,118 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-	<title>*dle list</title>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-		body {background-color: #090014;}
-		h1 {color: #fdf7ff;}
-  		p {color: #fdf7ff; font-family: 'JetBrains Mono', monospace; font-size: 25px;}
-  		a {color: #9e7fe7; font-family: 'JetBrains Mono', monospace; font-size: 25px;}
-	</style>
+    <title>*dle list</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+        body {
+            background-color: #090014;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fdf7ff;
+            padding: 20px;
+        }
+
+        p {
+            font-size: 25px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        a {
+            color: #9e7fe7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            cursor: pointer;
+            accent-color: #9e7fe7;
+        }
+    </style>
 </head>
 
 <body>
-	<p><a href="index.html">< back</a></p> <br><br>
+    <p><a href="index.html">&lt; back</a></p> <br><br>
 
-	<p>Wordle: <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank">wordle</a> </p>
-	<p>Overwatch: <a href="https://owdle.guessing.day/hero" target="_blank">owdle</a> </p>
-	<p>JoJo: <a href="https://jojodle.com/" target="_blank">jojodle</a> </p>
-	<p>Angle: <a href="https://angle.wtf/" target="_blank">angle</a> </p>
-	<p>More/Less: <a href="https://lessgames.com/moreless">More/Less</a> </p>
-	<p>Center Of Mass: <a href="https://centroidgame.com/">Centroid</a> </p>
-	<p>Cut Evenly: <a href="https://pfiffel.com/cutle/">Cutle</a> </p>
-	<p>Guess when the timer reaches 0: <a href="https://timingle.com/">Tmingle</a> </p>
-	<p>Flags: <a href="https://www.flagdle.org/">Flagle</a>,<a href="https://flagdoku.com/">Flagdoku</a> </p>
-	<p>AITA: <a href="https://muhashi.com/aita-guesser/">AITA Guesser</a> </p>
-	<p>Connections: <a href="https://www.nytimes.com/games/connections">Connections</a> </p>
+    <p><input type="checkbox" id="link1"> Wordle: <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank">wordle</a></p>
+    <p><input type="checkbox" id="link2"> Overwatch: <a href="https://owdle.guessing.day/hero" target="_blank">owdle</a></p>
+    <p><input type="checkbox" id="link3"> JoJo: <a href="https://jojodle.com/" target="_blank">jojodle</a></p>
+    <p><input type="checkbox" id="link4"> Angle: <a href="https://angle.wtf/" target="_blank">angle</a></p>
+    <p><input type="checkbox" id="link5"> More/Less: <a href="https://lessgames.com/moreless" target="_blank">More/Less</a></p>
+    <p><input type="checkbox" id="link6"> Center Of Mass: <a href="https://centroidgame.com/">Centroid</a></p>
+    <p><input type="checkbox" id="link7"> Cut Evenly: <a href="https://pfiffel.com/cutle/">Cutle</a></p>
+    <p><input type="checkbox" id="link8"> Guess when the timer reaches 0: <a href="https://timingle.com/">Tmingle</a></p>
+    <p><input type="checkbox" id="link9"> Flags: <a href="https://www.flagdle.org/">Flagle</a>, <a href="https://flagdoku.com/">Flagdoku</a></p>
+    <p><input type="checkbox" id="link10"> AITA: <a href="https://muhashi.com/aita-guesser/">AITA Guesser</a></p>
+    <p><input type="checkbox" id="link11"> Connections: <a href="https://www.nytimes.com/games/connections">Connections</a></p>
 
+    <script>
+        // Cookie helpers
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function setCookie(name, value, expiry) {
+            document.cookie = `${name}=${value}; expires=${expiry.toUTCString()}; path=/`;
+        }
+
+        function getExpiryForToday() {
+            const now = new Date();
+            const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            return tomorrow;
+        }
+
+        // List of all checkbox IDs
+        const links = [
+            'link1', 'link2', 'link3', 'link4', 'link5',
+            'link6', 'link7', 'link8', 'link9', 'link10', 'link11'
+        ];
+
+        // Load saved state from cookies and add listeners
+        links.forEach(id => {
+            const checkbox = document.getElementById(id);
+            const checked = getCookie(id);
+            if (checked === 'true') checkbox.checked = true;
+
+            // Save state on manual check/uncheck
+            checkbox.addEventListener('change', () => {
+                setCookie(id, checkbox.checked, getExpiryForToday());
+                checkAllDone();
+            });
+
+            // Auto-check when any link in the same <p> is clicked
+            const linksInP = checkbox.parentElement.querySelectorAll('a');
+            linksInP.forEach(link => {
+                link.addEventListener('click', () => {
+                    checkbox.checked = true;
+                    setCookie(id, true, getExpiryForToday());
+                    checkAllDone();
+                });
+            });
+        });
+
+        // Check if all checkboxes are done and set allDone cookie
+        function checkAllDone() {
+            const allChecked = links.every(id => document.getElementById(id).checked);
+            if (allChecked) {
+                setCookie('allDone', 'true', getExpiryForToday());
+            } else {
+                // Optional: clear the cookie if not all checked
+                setCookie('allDone', 'false', getExpiryForToday());
+            }
+        }
+
+        // Run on page load in case all are already checked
+        checkAllDone();
+    </script>
 </body>
-
 </html>
