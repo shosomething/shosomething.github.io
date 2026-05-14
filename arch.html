@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>sho's archinstall thing</title>
+        <meta charset="utf-8">
+        <link href = "styles.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <center><h1>archie install thing</h1></center>
+
+        <br> <!-- AAAAAAAAA  --> <section id="a"></section>
+
+        <div class="box" numb="a1">
+            <p>
+                download
+                <a href="https://archlinux.org/download/#download-mirrors" target="_blank">arch iso</a>
+            </p>
+            
+        </div>
+
+        <div class="box" numb="a2">
+            <p>
+                get 
+                <a href="https://rufus.ie/en/#download" target="_blank">rufus</a>
+                && flash the <strong>usb</strong>
+            </p>
+            
+        </div>
+
+        <div class="box" numb="a3">
+            <p>reboot into the <strong>usb</strong></p>
+        </div>
+
+        <hr> <!-- BBBBBBBBB  --> <section id="b"></section>
+
+        <div class="box" numb="b1">
+
+            <p> load your preffered keymap with </p>
+            <code> loadkeys <i>keymap</i> </code>
+
+        </div>
+
+        <div class="box" numb="b1*" style="border-style: dashed; background-color: #181825;" > 
+        
+            <p> <code>setfont ter-132b</code> to make your font bigger </p>
+            
+        </div>
+        
+        <!-- comment -->
+
+        <div class="box" numb="b2">
+
+            <p>
+                check your interface status with <code>ip a</code> or <code>ip link</code>
+                (were gonna be using ethernet for the installation process)
+                if at least one is <font style="color: #a6e3a1;">up</font>, you're okay to go
+            </p>
+
+        </div>
+
+        <div class="box" numb="b3">
+
+            <p>
+                use <code>ping <i>google.com</i></code> <i>(or any other address)</i> to check your internet connection.
+                if you get replies youre good to go. <br> then use <code> ctrl + c </code> to stop the pinging
+                <br> <!-- honestly idk why this works but ill leave this <br> here -->
+            </p>
+
+        </div>
+
+        <div class="box" numb="b4">
+
+            <p> run <code>timedatectl</code> to update the system clock </p>
+
+        </div>
+
+        <hr> <!-- CCCCCCCC  --> <section id="c"></section>
+
+        <div class="box" numb="c1" >
+            <p>
+                use <code>fdisk -l</code> to indentify all your <strong>discs</strong> <br>
+                pick the disc you want to install the system on. (we will refer to this disc as <i>disc<strong>X</strong></i>, where <strong>X</strong>
+                represents the partition. yours might look like <i>sd<strong>X</strong></i> (X being a letter representing the partition) or <i>nvmeAnBp<strong>X</strong></i> (A & B being constant numbers, and X a number representing the partition)
+            </p>
+        </div>
+
+        <div class="box" numb="c2">
+            <p>
+                once you've identified your disc use <code>cfdisk /dev/<i>disc</i></code> to open the partitioning tool. <br>
+                my reccomended partition layout is:<br>
+                &nbsp - ~1 GB <i>EFI partition</i><br>
+                &nbsp - ~1/2 Of your RAM GB <i>swap partition</i><br>
+                &nbsp - Rest of the disc <i>root partition</i>
+            </p>
+        </div>
+
+    </body>
+
+</html>
