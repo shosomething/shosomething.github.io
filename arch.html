@@ -96,6 +96,20 @@
                 &nbsp - ~1 GB <i>EFI partition</i><br>
                 &nbsp - ~1/2 Of your RAM GB <i>swap partition</i><br>
                 &nbsp - Rest of the disc <i>root partition</i>
+
+                <br><br>
+                when you've set up your partitions choose <i>save</i>, then <i>exit</i>
+            </p>
+        </div>
+
+        <div class="box" numb="c3" >
+            <p>
+                format your partitions with the following commands: <br>
+                <code>mkfs.<i>filesystem</i> /dev/<i>disc<strong>C</strong></i></code> (for example ext4 or btrfs) (<strong>C</strong> being our <i>root partition</i>)
+                <br>
+                <code>mkswap /dev/<i>disc<strong>B</strong></i></code> (<strong>B</strong> being our <i>swap partition</i>)
+                <br>
+                <code>mkfs.fat -F 32 /dev/<i>disc<strong>A</strong></i></code> (<strong>A</strong> being our <i>EFI partition</i>)
             </p>
         </div>
 
