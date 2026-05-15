@@ -1,63 +1,30 @@
 <!DOCTYPE html>
+
 <html>
-
 <head>
-    <title>basement</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-        body {
-            background-color: #090014;
-        }
-
-        h1 {
-            color: #fdf7ff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 40px;
-        }
-
-        p,
-        a,
-        details,
-        summary {
-            color: #fdf7ff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 25px;
-        }
-
-        hr {
-            color: #fdf7ff;
-        }
-    </style>
+  <meta charset=UTF-8">
+  <title>sho''s basement</title>
+  <link href = "styles.css" rel="stylesheet">
 </head>
-
 <body>
-    <center>
-        <h1>sho's basement</h1>
-    </center>
-    <hr>
 
-    <details>
-        <summary>stuff</summary>
-        <div class="stuff" style="margin-left: 2%;">
-            <a href="dle.html" id="dleLink">*dle list</a> <br>
-            <a href="#">nothing rn</a>
-        </div>
-    </details>
-
-    <script>
-        // Function to get a cookie
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        // Check if allDone cookie is set
-        if (getCookie("allDone") === "true") {
-            const dleLink = document.getElementById("dleLink");
-            dleLink.textContent = "*dle list (done)";
-        }
-    </script>
+  <center><h1>sho's basement</h1></center>
+  <hr>
+  
+  <div class='box' numb='a'>
+    <p><a href='arch.html'>arch thing</a></p>
+  </div>
+  
+  <div class='box' numb='d'>
+    <p><a href="dle.html">* dle list</a></p>
+  </div>
+  
+  <br>
+  
+  <code>
+    thanks to catppuccin for the colors ig ^^
+  </code>
+    
+  
 </body>
-
 </html>
