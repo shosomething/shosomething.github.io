@@ -112,6 +112,47 @@
                 <code>mkfs.fat -F 32 /dev/<i>disc<strong>A</strong></i></code> (<strong>A</strong> being our <i>EFI partition</i>)
             </p>
         </div>
+        
+        <div class="box" numb="c4">
+            <p>
+                let's mount them now! <br> 
+                <code>mount /dev/<i>disc<strong>C</strong></i> /mnt</code> to mount the <i>root partition</i> <br>
+                <code>mount --mkdir /dev/<i>disc<strong>A</strong></i> /mnt/boot</code> the <i>--mkswap</i> flag is used here to create the <i>/boot</i> folder <br>
+                & <code>swapon /dev/<i>disc<strong>B</strong></i></code> to turn swap on
+            </p>
+        </div>
+        
+        <hr>
+        
+        <div class="box" numb="d1">
+            <p>
+                install the linux kernel along some necessary packages
+                <br> <code>pacstrap -K <i>/mnt</i> <strong>base linux linux-firmware</strong></code> i'd also add <code><strong>nano sudo networkmanager</strong></code> <br>
+                press <strong>enter</strong> and wait until it finishes
+            </p>
+        </div>
+
+        <div class="box" numb="d2">
+            <p>
+                <code>genfstab -U <i>/mnt</i> >> <i>/mnt/etc/fstab</i></code> to generate the fstab file
+            </p>
+        </div>
+        
+        <div class="box" numb="d3">
+            <p>
+                change root to <i>/mnt</i> with <code>arch-chroot <i>/mnt</i></code>
+            </p>
+        </div>
+        
+        <hr>
+        
+        <div class="box" numb="e1">
+            <p>
+                use <code>ln -sf <i>/usr/share/zoneinfo/<strong>Area/Location</strong> /etc/localtime</i></code> to set your timezone <br>
+                (your path can be for example <i>/Asia/Tokyo</i>) <br>
+                then use <code>hwclock --systohc</code> to uodate your hardware clock
+            </p>
+        </div>
 
     </body>
 
