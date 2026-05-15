@@ -2,10 +2,24 @@
 
 body {
     background-color: #181825;
+    padding: 0;
+
+    font-size: clam(14px, 2vw, 18px);
+
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+@media (max-width: 600px) {
+    .box {
+        padding: 12px;
+    }
+
+    code {
+        font-size: 0.9em;
+    }
 }
 
 .jetbrains-mono-<uniquifier> {
@@ -20,12 +34,18 @@ html {
     border: 2px solid #a6adc8;
     border-radius: 15px;
     padding: 5px;
-    padding-left:8%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-left:50px;
+    /*margin-top: 10px;
+    margin-bottom: 10px; 
 
     margin-right: 15px;
-    margin-left: 15px;
+    margin-left: 15px; */
+
+    margin: 10px 15px auto;
+    width: calc(100%-20px);
+
+
+    box-sizing: border-box;
 
     position: relative;
 
@@ -130,6 +150,8 @@ hr {
 }
 
 code {
+    cursor: pointer;
+    transition: .1s;
     background-color: #11111b;
     border: 2px solid #a6adc8;
     border-radius: 15px;
@@ -139,4 +161,49 @@ code {
     color: #cdd6f4;
     font-family: "JetBrains Mono", monospace;
 
+    display: inline-block;
+    
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+
+
+}
+
+code.copied {
+    transform: scale(.95);
+    opacity: 0.7;
+}
+
+code:hover {
+    background-color: #313244;
+    border: 2px dashed #a6adc8;
+    animation: marching-ants 0.5s linear infinite
+}
+
+.popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 2px solid #a6adc8;
+
+    background-color: #11111b;
+    color: #cdd6f4;
+
+    padding: 10px 14px;
+    border-radius: 10px;
+
+    font-family: "JetBrains Mono", monospace;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.2s;
+
+}
+
+.popup.show {
+    opacity: 1;
 }

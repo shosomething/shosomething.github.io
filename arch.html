@@ -4,15 +4,40 @@
     <head>
 
         <title>sho's archinstall thing</title>
-        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
         <link href = "styles.css" rel="stylesheet">
 
     </head>
 
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const popup = document.getElementById("copyPopup");
+
+            document.querySelectorAll("code").forEach(code => {
+                code.addEventListener("click", async () => {
+                    await navigator.clipboard.writeText(code.textContent);
+
+                    code.classList.add("copied");
+
+                    popup.classList.add("show");
+
+                    clearTimeout(window.copyPopupTimeout)
+
+                    setTimeout(() => {
+                        code.classList.remove("copied");
+                    }, 150);
+
+                    window.copyPopupTimeout = setTimeout(() => {
+                        popup.classList.remove("show");
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+
     <body>
 
-        <center><h1>archie install thing</h1></center>
-
+        <h1 style="text-align: center;">archie install thing</h1>
         <br> <!-- AAAAAAAAA  --> <section id="a"></section>
 
         <div class="box" numb="a1">
@@ -118,7 +143,7 @@
                 let's mount them now! <br> 
                 <code>mount /dev/<i>disc<strong>C</strong></i> /mnt</code> to mount the <i>root partition</i> <br>
                 <code>mount --mkdir /dev/<i>disc<strong>A</strong></i> /mnt/boot</code> the <i>--mkswap</i> flag is used here to create the <i>/boot</i> folder <br>
-                & <code>swapon /dev/<i>disc<strong>B</strong></i></code> to turn swap on
+                & <code>swapon /dev/<i>disc<strong>B</strong></i></code> to turn swap on <br>
             </p>
         </div>
         
@@ -140,7 +165,7 @@
         
         <div class="box" numb="d3">
             <p>
-                change root to <i>/mnt</i> with <code>arch-chroot <i>/mnt</i></code>
+                change root to <i>/mnt</i> with <code>arch-chroot <i>/mnt</i></code> <br>
             </p>
         </div>
         
@@ -148,10 +173,60 @@
         
         <div class="box" numb="e1">
             <p>
-                use <code>ln -sf <i>/usr/share/zoneinfo/<strong>Area/Location</strong> /etc/localtime</i></code> to set your timezone <br>
+                use <code>ln -sf <i>/usr/share/zoneinfo/<strong>Area/Location</strong> /etc/localtime</i></code> to set your timezone
                 (your path can be for example <i>/Asia/Tokyo</i>) <br>
-                then use <code>hwclock --systohc</code> to uodate your hardware clock
+                then use <code>hwclock --systohc</code> to update your hardware clock <br>
             </p>
+        </div>
+
+
+        <div class="box" numb="e1*" style="border-style: dashed; background-color:#181825";>
+            <p>
+                now a quick overview on <strong>nano</strong> <br>
+                <strong>nano</strong> is a text editor. the editing is really intuitive, but theres a couple of things you should remember: <br>
+                &nbsp - press <strong>ctrl + o</strong> then <strong>enter</strong> to save a file <br>
+                &nbsp - press <strong>ctrl + x</strong> to exit out of <i>nano</i> (i reccomended using <code>clear</code> after that) <br>
+            </p>
+        </div>
+
+        <div class="box" numb="e2">
+            <p>
+                <code>nano <i>/etc/locale.gen</i></code> to open the <i>locale gen</i> file. uncomment (remove the <i>#</i> from the start of the line) the line with <i>en_US.UTF-8</i> or <i>en_GB.UTF-8</i> and any others you might want <br>
+                <br> then <code>locale-gen</code> to generate the locale(s) <br>
+            </p>
+        </div>
+
+        <div class="box" numb="e3">
+            <p>
+                edit ( <code>nano <i>/etc/locale.conf</i></code> ) the <i>locale configuration file</i> with <strong>nano</strong> accordingly: <br>
+                <code>LANG=<strong>locale</strong></code>, <strong>locale</strong> being one of the locales you installed in step <strong>e2</strong> <br>
+            </p>
+        </div>
+
+        <div class="box" numb="e4">
+            <p>
+                edit <code>/etc/hostname</code> with <strong>nano</strong> accordingly: <br>
+                <code><strong>hostname</strong></code>, <strong>hostname</strong> being any chosen hostname for you computer <br>
+            </p>
+        </div>
+
+        <div class="box" numb="e4*" style="border-style: dashed; background-color: #181825;";>
+            <p>
+                if you changed the keymap, run <code>mkinitcpio -P</code> <br>
+            </p>
+        </div>
+
+        <div class="box" numb="e5">
+            <p>
+                set your <strong>root</strong> password with <code>passwd</code> <br> <strong>(this isn't your user password, this is something like an administrator password)</strong>
+            </p>
+        </div>
+
+        <hr>
+
+
+        <div class="popup" id="copyPopup">
+            copied
         </div>
 
     </body>
