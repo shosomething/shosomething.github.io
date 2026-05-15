@@ -114,7 +114,7 @@
             <p>
                 use <code>fdisk -l</code> to indentify all your <strong>discs</strong> <br>
                 pick the disc you want to install the system on. (we will refer to this disc as <i>disc<strong>X</strong></i>, where <strong>X</strong>
-                represents the partition. yours might look like <i>sd<strong>X</strong></i> (X being a letter representing the partition) or <i>nvmeAnBp<strong>X</strong></i> (A & B being constant numbers, and X a number representing the partition)
+                represents the partition. yours might look like <i>sd<strong>XY</strong></i> (X being a stationary letter and Y being a number representing the partition) or <i>nvmeAnBp<strong>X</strong></i> (A & B being constant numbers, and X a number representing the partition)
             </p>
         </div>
 
@@ -127,14 +127,14 @@
                 &nbsp - Rest of the disc <i>root partition</i>
 
                 <br><br>
-                when you've set up your partitions choose <i>save</i>, then <i>exit</i>
+                when you've set up your partitions choose <i>Write</i>, then <i>Quit</i>
             </p>
         </div>
 
         <div class="box" numb="c3" >
             <p>
                 format your partitions with the following commands: <br>
-                <code>mkfs.<i>filesystem</i> /dev/<i>disc<strong>C</strong></i></code> (for example ext4 or btrfs) (<strong>C</strong> being our <i>root partition</i>)
+                <code>mkfs.<i>filesystem</i> /dev/<i>disc<strong>C</strong></i></code> (<strong>filesystem</strong> being for example ext4 or btrfs (we'll use <strong>ext4</strong>)) (<strong>C</strong> being our <i>root partition</i>)
                 <br>
                 <code>mkswap /dev/<i>disc<strong>B</strong></i></code> (<strong>B</strong> being our <i>swap partition</i>)
                 <br>
@@ -146,7 +146,7 @@
             <p>
                 let's mount them now! <br> 
                 <code>mount /dev/<i>disc<strong>C</strong></i> /mnt</code> to mount the <i>root partition</i> <br>
-                <code>mount --mkdir /dev/<i>disc<strong>A</strong></i> /mnt/boot</code> the <i>--mkswap</i> flag is used here to create the <i>/boot</i> folder <br>
+                <code>mount --mkdir /dev/<i>disc<strong>A</strong></i> /mnt/boot</code> the <i>--mkdir</i> flag is used here to create the <i>/boot</i> folder <br>
                 & <code>swapon /dev/<i>disc<strong>B</strong></i></code> to turn swap on <br>
             </p>
         </div>
