@@ -6,10 +6,14 @@ body {
 
     font-size: clam(14px, 2vw, 18px);
 
+    height: 100%;
+    min-height: 100vh;
+
 }
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 @media (max-width: 600px) {
@@ -29,12 +33,27 @@ html {
   font-style: normal;
 }
 
+#footer {
+    width: min(600px, calc(100% - 20px));
+    margin: 0 auto 20px auto;
+
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: clamp(10px, 2.5vw, 16px);
+}
+
 .box {
     background-color: #1e1e2e;
     border: 2px solid #a6adc8;
     border-radius: 15px;
     padding: 5px;
-    padding-left:50px;
     /*margin-top: 10px;
     margin-bottom: 10px; 
 
@@ -96,6 +115,15 @@ h1 {
     text-align: right;
 
     flex-shrink: 0;
+}
+
+.box[numb]:not([numb="none"]) {
+    padding-left:50px;
+}
+
+.box[numb="none"]::before {
+    content: "";
+    display: none;
 }
 
 .box .codebox:last-child {

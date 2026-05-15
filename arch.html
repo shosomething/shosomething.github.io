@@ -8,7 +8,7 @@
         <link href = "styles.css" rel="stylesheet">
 
     </head>
-
+    
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             const popup = document.getElementById("copyPopup");
@@ -37,8 +37,11 @@
 
     <body>
 
-        <h1 style="text-align: center;">archie install thing</h1>
-        <br> <!-- AAAAAAAAA  --> <section id="a"></section>
+        <a href="index.html" style="text-decoration: none;"> << </a> 
+        <h1 style="text-align: center;">arch install thing</h1>
+        <!-- AAAAAAAAA  --> <section id="a"></section>
+
+        <hr>
 
         <div class="box" numb="a1">
             <p>
@@ -76,7 +79,7 @@
             
         </div>
         
-        <!-- comment -->
+        <!-- comment --> 
 
         <div class="box" numb="b2">
 
@@ -147,7 +150,7 @@
             </p>
         </div>
         
-        <hr>
+        <hr> <section id="d"></section>
         
         <div class="box" numb="d1">
             <p>
@@ -169,7 +172,7 @@
             </p>
         </div>
         
-        <hr>
+        <hr> <section id="e"></section>
         
         <div class="box" numb="e1">
             <p>
@@ -222,8 +225,77 @@
             </p>
         </div>
 
+        <hr> <section id="f"></section>
+
+        <div class="box" numb="f1">
+            <p>
+                now we're gonna install the <strong>bootloader</strong>. the <strong>bootloader</strong> the essentially what fires up your sysem, without it you cant really run it. <br>
+                the <strong>bootloader</strong> we're installing is <strong>grub</strong> (short for <b>gr</b>and <b>u</b>nified <b>b</b>ootloader).
+                <br><br>
+                we'll use <strong>pacman</strong>, <i>arch</i>'s package manager to get the required packages. run <code>pacman -S <i>grub efibootmgr</i></code> and press <strong>enter</strong> to confirm <br>
+                
+            </p>
+        </div>
+        
+        <div class="box" numb="f2">
+            <p>
+                when you've installed <strong>the packages</strong> run <code>grub-install <i>--target=x86_64-efi --efi-directory=<strong>esp</strong> --bootloader-id=GRUB </i></code>, <strong>esp</strong> being the mount of your <i>boot (EFI)</i> partition, in our case <i>/boot</i> <br>
+            </p>
+        </div>
+
+        <div class="box" numb="f3">
+            <p>
+                to configure <strong>grub</strong> edit <code>/etc/default/grub</code> with <strong>nano</strong>. <br> we're going to change the line <code>GRUB_DEFAULT=<i>0</i></code> to <code>GRUB_DEFAULT=<i>saved</i></code> & <code>GRUB_DISABLE_OS_PROBER=<i>true</i></code> to <code>GRUB_DISABLE_OS_PROBER=<i>false</i></code> & uncomment <code>GRUB_SAVEDEFAULT=<i>true</i></code> <br>
+                also, install <strong>os-prober</strong> with <code>pacman -S <i>os-prober</i></code> <br>
+                <br> <strong>(keep in mind all if this is competelly optional if you dont plan on dual-booting)</strong>
+            </p>
+        </div>
+
+        <div class="box" numb="f4">
+            <p>
+                run <code>grub-mkconfig -o <i>/boot/grub/grub.cfg</i> </code> to generate the config file <strong>(this is not optional)</strong> <br>
+            </p>
+        </div>
+
+        <div class="box" numb="f5">
+            <p>
+                run <code>exit</code> or press <strong>ctrl + d</strong> to exit <i>chroot</i>, then <strong>reboot</strong> with <code>reboot</code>. after your system reboots you should be greeted with a login screen <br>
+                in that case, it's safe to remove the <strong>USB</strong>. in the login field type <code>root</code>, press <strong>enter</strong> and type your <strong>root</strong> password you set in step <i>e5</i> <br>
+            </p>
+        </div>
+
+        <hr> <section id="g"></section>
+
+        <div class="box" numb="g1">
+            <p>
+                now you're technicaly ready with your system, but there's still a few things you should do <br>
+                run <code><strong>EDITOR=nano</strong> visudo</code> to open the sudoers file. uncomment the <code><strong>%wheel</strong> <i>ALL</i>=(<i>ALL</i>:<i>ALL</i>) <i>ALL</i></code> line and save the file <br>
+            </p>
+        </div>
+
+        <div class="box" numb="g2">
+            <p>
+                now we'll finally create a <strong>user</strong>. run <code>useradd <i>-m -G wheel</i> <strong>username</strong></code> to add a user in the wheel group, then run <code>passwd <strong>username</strong></code> to set their password <br>
+
+                you can now login with the user. to change the user run <code>su <strong>username</strong></code>. if you're not in <strong>root</strong> and want to become root, run <code><strong>sudo</strong> su</code> <br>
+            </p>
+        </div>
+
+        <div class="box" numb="g3">
+            <p>
+                your system is now ready to configure! <strong>have fun!</strong>
+            </p>
+        </div>
+
+        <div class="box" numb="..." style="border-style: dashed; background-color: #181825;">
+            <p>
+                <strong>kde plasma / gnome</strong> & <strong>basic config</strong> <i style="color: #cdd6f4;">guides</i> coming soon
+            </p>
+        </div>
+
         <hr>
 
+        <section id="bottom"></section>
 
         <div class="popup" id="copyPopup">
             copied
