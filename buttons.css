@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+
+html {
+    background-color: #080708;
+    color: #D5CDD5;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    font-variation-settings:
+        "wdth" 100;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.box {
+    border: 2px solid #21192D;
+    border-radius: 15px;
+    background-color: #130E1A;
+
+    margin: 15px 15px;
+    padding: 12px 10px;
+
+    width: 200px;
+    height: 300px;
+
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+
+    justify-content: center;
+    
+    transform: 
+    perspective(700px)
+    scale(var(--scale))
+    rotateX(var(--rotateX))
+    rotateY(var(--rotateY));
+
+    transition: transform .05s ease;
+
+}
+
+a {
+    color: #78bec7;
+}
+
+img {
+    border-radius: 9px;
+}
+
+.box img {
+    transform: translateZ(7px);
+}
+
+
+.box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 10; /* IMPORTANT */
+
+    border-radius: inherit;
+    pointer-events: none;
+
+    transition: background .5s ease;
+
+    background: radial-gradient(
+        circle at var(--shineX, 50%) var(--shineY, 50%),
+        rgba(247, 244, 248, 0.055),
+        transparent 60%
+    );
+
+    opacity: 1;
+}
+
+.switcher {
+    a {
+        color: #D5CDD5;
+        text-decoration: none;
+        font-weight: bold
+    };
+    color: #D5CDD5;
+
+    position: absolute;
+
+    margin: 12px 0px 0px 15px;
+
+    z-index: 100;
+
+    display: grid;
+
+}
