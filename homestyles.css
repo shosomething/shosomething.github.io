@@ -1,102 +1,38 @@
-@import url('https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap');
 
-
-/* .jetbrains-mono-<uniquifier> {
-  font-family: "JetBrains Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-} */
-
-
-html,
-body {
+html, body{
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100dvh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 html {
-    background-color: var(--ctp-mocha-mantle);
+    background-color: #eaece7; /*#050010 dark*/
+    color: #0004a6;
+
+    font-family: "Yuji Boku", serif;
+    font-weight: 400;
+    font-style: normal;
+    
+    font-size: 1.5rem;
+}
+
+a {
+    color: #0004a6;
+    text-decoration: underline;
+    text-decoration-style: wavy;
 }
 
 body {
-    color: var(--ctp-mocha-text);
-    font-family: "JetBrain Mono", monospace;
-    font-optical-sizing: auto;
+    background-image: url("assets/paper.jpg");
+    background-attachment: fixed;
+    background-repeat: repeat-y;
+    background-size: cover;
+
+    padding-left: 4vw;
 }
 
-#canvas {
+.box {
+    border: 30px solid transparent;
 
-    background-image:
-        radial-gradient(var(--ctp-mocha-surface2) 15%, transparent 16%);
-    background-size: 10px 10px;
-
-    display: grid;
-    place-content: center;
-
-    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 80%);
-    mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0.3) 80%);
-
-    grid-template-columns: repeat(auto-fit, minmax(0px, 150px));
-
-    grid-auto-rows: minmax(100px, auto);
-
-    gap: 15px;
-
-    width: 100%;
-    height: 100%;
-
-    min-height: 100vh;
-    padding: 20px;
-
-    box-sizing: border-box;
-}
-
-.breakout {
-    grid-column: 1 / -1;
-}
-
-.node {
-    background-color: var(--ctp-mocha-crust);
-    border: 1px solid var(--ctp-mocha-lavender);
-    border-radius: 50%;
-
-    min-width: 0;
-    width: 100%;
-    aspect-ratio: 1/1;
-    box-sizing: border-box;
-
-    color: var(--ctp-mocha-text);
-    text-decoration: none;
-
-    padding: 10px;
-    text-align: center;
-    word-break: normal;
-    hyphens: auto;
-    overflow-wrap: anywhere;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-
-    transition: transform 0.2s ease;
-
-    will-change: transform;
-
-    overflow: hidden;
-
-}
-
-.node:hover {
-    transform: scale(.98) translateY(5px);
-}
-
-.node:active {
-    transform: scale(.95) translateY(10px);
+    border-image: url("assets/border.png") 90 round;
 }
