@@ -21,6 +21,8 @@ const lastfmData = await lastfmRes.json();
 
 const tracks = lastfmData.toptrack?.track;
 
+console.log(JSON.stringify(lastfmData, null, 2));
+
 if (!tracks || tracks.length === 0) {
   throw new Error("no tracks :(");
 }
