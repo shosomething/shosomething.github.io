@@ -19,7 +19,7 @@ const lastfmUrl =
 const lastfmRes = await fetch(lastfmUrl);
 const lastfmData = await lastfmRes.json();
 
-const tracks = lastfmData.toptrack?.track;
+const tracks = lastfmData.toptracks?.track;
 
 console.log(JSON.stringify(lastfmData, null, 2));
 
@@ -34,7 +34,7 @@ const artist = track.artist.name;
 const song = track.name;
 const plays = Number(track.playcount);
 
-console.log('Selected: ${artist}\'s ${song}');
+console.log(`Selected: ${artist}\'s ${song}`);
 
 let lyric = "lyrics unaviable 3:";
 
@@ -43,7 +43,7 @@ const lyricsUrl =
   `?artist_name=${encodeURIComponent(artist)}` +
   `&track_name=${encodeURIComponent(song)}`;
 
-const lyricsRes = await fetch(lyricsURL);
+const lyricsRes = await fetch(lyricsUrl);
 
 if (lyricsRes.ok) {
   const lyricsData = await lyricsRes.json();
