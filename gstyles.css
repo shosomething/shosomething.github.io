@@ -32,10 +32,12 @@ body {
     display: flex;
     flex-direction: column;
 
-    width: 90vw;
+    width: min(90vw,90vh);
+
     justify-content: center;
     align-items: center;
     aspect-ratio: 1/1;
+
 
     background: var(--ctp-mocha-mantle);
     border: 1px solid #45475a;
