@@ -17,6 +17,10 @@
                 <p id="noteText" style="text-align: center;">.</p>
             </div>
 
+            <div class="notePreview">
+                <p id="noteText" style="text-align: center;">.</p>
+            </div>
+
             <div class="buttons">
                 <button type="button" id="randomnote" style="height: 100%; aspect-ratio: 1/1;">random <br>note</button>
                 <button type="button" id="randomchord" style="height: 100%; aspect-ratio: 1/1;">radnom M/m <br>chord</button>
@@ -24,8 +28,11 @@
 
             <div class="buttons-top">
                 <button type="button" id="toggle-timer" style="height: 100%; aspect-ratio: 1/1;">timer</button>
-                <input type="number" id="bpm-input" min="0" maxlength="3" name="bpm" placeholder="bpm">
+                <input type="number" id="bpm-input" min="0" maxlength="3" name="bpm" placeholder="bpm" onfocus="this.select()">
+                <input type="number" id="beats-input" min="1" name="beats" placeholder="beats" value="4" style="max-height: 50%; max-width: auto; min-width: 35px; aspect-ratio: 1/1; " onfocus="this.select()">
             </div>
+
+
 
         </main>
 

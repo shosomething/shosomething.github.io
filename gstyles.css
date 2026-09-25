@@ -99,6 +99,31 @@ body {
     }
 }
 
+.notePreview {
+    width: 20%;
+    aspect-ratio: 1/1;
+
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    
+    right: 3.5%;
+
+    background-color: var(--primary-shadow);
+
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    box-shadow: inset .5vw .5vh 2vh var(--primary-shadow);
+
+    font-size: 5vw;
+
+    p {
+        text-shadow: 1vw 1vh 1vh var(--primary-shadow);
+    }
+}
+
 .buttons {
     position: absolute;
 
@@ -204,7 +229,7 @@ input[type=number] {
     transition-duration: .1s;
 
 
-    min-width: 8%;
+    min-width: 35px;
     max-width: 8%;
 
     min-height: 50%;

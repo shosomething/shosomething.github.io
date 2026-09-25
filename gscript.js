@@ -12,6 +12,8 @@ let lastnote = "";
 const buttonTimer = document.getElementById("toggle-timer");
 const timerBPMi = document.getElementById("bpm-input");
 
+const timeBeatsi = document.getElementById("beats-input");
+
 let timer = null;
 let beatTimer = null;
 
@@ -132,13 +134,18 @@ buttonTimer.addEventListener("click", () => {
 
     if (timer === null) {
 
-        if (Number(timerBPMi.value) <= 0) {
+        if (Number(timerBPMi.value) <= 0 || Number(timeBeatsi.value) <= 0) {
+            console.log("bpm/beats can't be less or equal to 0!")
             return
         }
 
         const bpm = Number(timerBPMi.value);
-        const mstime = (60000/bpm) * 4 ; //4 is beats per bar here
-        const beattime = mstime / 4; //4 is that again, use this for visualisation
+
+        var beats = 4;
+        beats = Number(timeBeatsi.value);
+
+        const mstime = (60000/bpm) * beats ;
+        const beattime = mstime / beats;
 
         if (mode == "chord") {
             randomChord(); //for now
