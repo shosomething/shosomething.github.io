@@ -4,10 +4,12 @@ let notes = ["A","B","C","D","E","F","G"];
 let buttonNote = document.getElementById("randomnote");
 
 let noteText = document.getElementById("noteText");
+let previewText = document.getElementById("previewText");
 
 let buttonChord = document.getElementById("randomchord");
 
 let lastnote = "";
+let lastchord = "";
 
 const buttonTimer = document.getElementById("toggle-timer");
 const timerBPMi = document.getElementById("bpm-input");
@@ -19,7 +21,10 @@ let beatTimer = null;
 
 let mode = "chord";
 
-function getRandomNote(sharps) {
+let notesQueue = [];
+let chordsQueue = [];
+
+function getRandomNote(sharps,previous) {
     let i = Math.floor(Math.random() * notes.length);
     let note = notes[i];
 
@@ -62,6 +67,10 @@ function getRandomNote(sharps) {
         finalText = note
     }
 
+    if (finalText == previous) {
+        finalText = getRandomNote()
+    }
+
     return finalText
 
 }
@@ -70,46 +79,26 @@ function randomNote() {
 
     mode = "note";
 
-    let finalText = getRandomNote(true)
-
-    if (finalText == lastnote) {
-        console.log("repeat")
-        randomNote()
-    } else {
-
-        let scalingThing = 5
-
-        let var1 = (Math.random() - 0.5) * scalingThing
-        let var2 = (Math.random() - 0.5) * scalingThing
-        let var3 = (Math.random() - 0.5) * scalingThing
-        let var4 = (Math.random() - 0.5) * scalingThing
-        let var5 = (Math.random() - 0.5) * scalingThing
-
-        /*noteText.animate([
-            { transform: `translate3d(${var1}px, ${var2}px, 0)` },
-            { transform: `translate3d(${var2}px, ${var3}px, 0)` },
-            { transform: `translate3d(${var4}px, 0, 0)` },
-            { transform: `translate3d(${var4}px, ${var4}px, 0)` },
-            { transform: `translate3d(${var5}px, 0, 0)` },
-            { transform: `translate3d(${var4}px, ${var5}px, 0)` },
-            { transform: `translate3d(${var1}px, 0, 0)` }
-        ], {
-            duration: 500,
-            easing: 'cubic-bezier(.36,.07,.19,.97)'
-        }); */
-
-        noteText.textContent = finalText
-        lastnote = finalText
+    if (notesQueue[1] == null) {
+        notesQueue[1] = getRandomNote(true)
     }
 
-    //console.log(finalText)    
+    //move [1] to [0], gen new 1, update disps
+
+    notesQueue[0] = notesQueue[1]
+    notesQueue[1] = getRandomNote(true,lastnote)
+
+    //let finalText = getRandomNote(true)
+
+    noteText.textContent = notesQueue[0]//finalText
+    previewText.textContent = notesQueue[1]
+
+    //console.log(finalText)
+    lastnote = notesQueue[0];  
 
 }
 
-function randomChord() {
-
-    mode = "chord";
-
+function getRandomChord(previous) {
     let note = getRandomNote(false)
 
     let minor = Math.round(Math.random()); //1 or 0
@@ -122,7 +111,24 @@ function randomChord() {
         finalText = note.concat("","m")
     }
 
-    noteText.textContent = finalText
+    return finalText
+}
+
+function randomChord() {
+
+    mode = "chord";
+
+    if(chordsQueue[1] == null) {
+       chordsQueue[1] = getRandomChord(lastchord);
+    }
+
+    chordsQueue[0] = chordsQueue[1]
+    chordsQueue[1] = getRandomChord(lastchord);
+
+    noteText.textContent = chordsQueue[0]
+    previewText.textContent = chordsQueue[1];
+
+    lastchord = chordsQueue[0];
 
 }
 

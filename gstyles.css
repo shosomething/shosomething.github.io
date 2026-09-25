@@ -103,6 +103,7 @@ body {
     width: 20%;
     aspect-ratio: 1/1;
 
+    display: flex;
     position: absolute;
     justify-content: center;
     align-items: center;
@@ -117,7 +118,7 @@ body {
 
     box-shadow: inset .5vw .5vh 2vh var(--primary-shadow);
 
-    font-size: 5vw;
+    font-size: 2.5vw;
 
     p {
         text-shadow: 1vw 1vh 1vh var(--primary-shadow);
