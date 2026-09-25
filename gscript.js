@@ -1,13 +1,21 @@
 
 let notes = ["A","B","C","D","E","F","G"];
 
-let buttonNote = document.getElementById("randomnote")
+let buttonNote = document.getElementById("randomnote");
 
-let noteText = document.getElementById("noteText")
+let noteText = document.getElementById("noteText");
 
-let buttonChord = document.getElementById("randomchord")
+let buttonChord = document.getElementById("randomchord");
 
-let lastnote = ""
+let lastnote = "";
+
+const buttonTimer = document.getElementById("toggle-timer");
+const timerBPMi = document.getElementById("bpm-input");
+
+let timer = null;
+let beatTimer = null;
+
+let mode = "chord";
 
 function getRandomNote(sharps) {
     let i = Math.floor(Math.random() * notes.length);
@@ -57,6 +65,9 @@ function getRandomNote(sharps) {
 }
 
 function randomNote() {
+
+    mode = "note";
+
     let finalText = getRandomNote(true)
 
     if (finalText == lastnote) {
@@ -94,6 +105,9 @@ function randomNote() {
 }
 
 function randomChord() {
+
+    mode = "chord";
+
     let note = getRandomNote(false)
 
     let minor = Math.round(Math.random()); //1 or 0
@@ -112,3 +126,41 @@ function randomChord() {
 
 buttonNote.addEventListener("click", randomNote)
 buttonChord.addEventListener("click",randomChord)
+
+buttonTimer.addEventListener("click", () => {
+    if (timer === null) {
+        const bpm = Number(timerBPMi.value);
+        const mstime = (60000/bpm) * 4 ; //4 is beats per bar here
+        const beattime = mstime / 4; //4 is that again, use this for visualisation
+
+        if (mode == "chord") {
+            randomChord(); //for now
+
+            timer = setInterval(randomChord,mstime);
+            
+        } else if (mode == "note") {
+            randomNote(); //for now
+
+            timer = setInterval(randomNote,mstime);
+        }
+        
+        beatTimer = setInterval(() => {
+            noteText.classList.remove("beat-pulse");
+
+            void noteText.offsetWidth;
+
+            noteText.classList.add("beat-pulse");
+        }, beattime)
+
+        buttonTimer.classList.toggle("active");
+
+    } else {
+        clearInterval(timer);
+        timer = null;
+
+        clearInterval(beatTimer);
+        beatTimer = null;
+
+        buttonTimer.classList.toggle("active");
+    }
+})

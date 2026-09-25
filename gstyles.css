@@ -1,6 +1,18 @@
 @import url('https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
+@keyframes beatPulse {
+    0% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.12);
+    }
+    35% {
+        transform: scale(1);
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -88,12 +100,33 @@ body {
 
 }
 
+.buttons-top {
+    position: absolute;
+
+    box-sizing: border-box;
+
+    top: 0%;
+    left: 0%;
+
+    width: 88vw;
+    height: 9vh;
+
+
+
+    margin: 1% 1% 1% 1%;
+
+}
+
 button {
-    background-color: var(--ctp-mocha-mantle);
+    /*background-color: var(--ctp-mocha-mantle);
+    color: var(--ctp-mocha-text); */
+
+    background-color: var(--ctp-latte-mantle);
+    color: var(--ctp-latte-text);
+
     border: 2px solid #45475a;
     border-radius: 50vh;
     text-align: center;
-    color: var(--ctp-mocha-text);
 
     font-size: 1vh;
 
@@ -109,12 +142,65 @@ button {
 }
 
 button:hover {
-    transform: scale(.9, .9);
-    box-shadow: inset .1vw .1vh 1vh #0a0a0a;
+    transform: scale(.95, .95);
+    box-shadow: .1vw .1vh 1vh #0a0a0a;
 }
 
 button:active {
     font-size: .9vh;
     transform: scale(.89,.89);
-    box-shadow: inset .2vw .2vh 2vh #0a0a0a;
+    box-shadow: inset .2vw .2vh 2vh #acb0be;
+}
+
+button.active {
+    font-size: .9vh;
+    transform: scale(.89,.89);
+    box-shadow: inset .2vw .2vh 2vh #acb0be;
+}
+
+button.active:hover {
+    transform: scale(.85, .85);
+    box-shadow: inset .2vw .2vh 2vh #acb0be;
+}
+
+button.active:active {
+    transform: scale(1.05, 1.05);
+    box-shadow: .3vw .3vh 3vh #0a0a0a;
+}
+
+input[type=number] {
+    -webkit-appearance: textfield;
+    -moz-appearance:    textfield;
+    appearance:         textfield;
+
+
+    background-color: var(--ctp-latte-mantle);
+    border: 2px solid #45475a;
+    border-radius: 50vh;
+    text-align: center;
+    color: var(--ctp-latte-text);
+
+    font-size: 1vh;
+
+    font-weight: bold;
+
+    box-shadow: .2vw .2vh 2vh #0a0a0a;
+    transition-duration: .1s;
+
+
+    min-width: 8%;
+    max-width: 8%;
+
+    min-height: 50%;
+
+}
+
+
+input[type=number]:focus {
+    min-width: 9%;
+    max-width: 9%;
+}
+
+.beat-pulse {
+    animation: beatPulse 150ms ease-out;
 }
