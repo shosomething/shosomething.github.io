@@ -1,6 +1,22 @@
 @import url('https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
+:root {
+    --background: var(--ctp-mocha-crust);
+    --surface: var(--ctp-mocha-mantle);
+    --text: var(--ctp-mocha-text);
+    --border: #45475a;
+    
+    --primary-shadow: #0a0a0a;
+    --secondary-shadow: #acb0be;
+
+    --button-background: var(--ctp-latte-crust);
+    --button-text: var(--ctp-latte-text);
+
+
+
+}
+
 @keyframes beatPulse {
     0% {
         transform: scale(1);
@@ -22,9 +38,9 @@ body {
     margin: 0;
     width: 100%;
     min-height: 100vh;
-    background: var(--ctp-mocha-crust);
+    background: var(--background);
 
-    color: var(--ctp-mocha-text);
+    color: var(--text);
     font-family: "Noto Sans JP", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -51,9 +67,9 @@ body {
     aspect-ratio: 1/1;
 
 
-    background: var(--ctp-mocha-mantle);
-    border: 1px solid #45475a;
-    box-shadow: .5vw .5vh 2vh #0a0a0a;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: .5vw .5vh 2vh var(--primary-shadow);
 
     border-radius: 2%;
     overflow: hidden;
@@ -68,18 +84,18 @@ body {
     align-items: center;
     
 
-    background-color: #0a0a0a;
+    background-color: var(--primary-shadow);
 
-    background: var(--ctp-mocha-crust);
-    border: 1px solid #45475a;
+    background: var(--background);
+    border: 1px solid var(--border);
     border-radius: 50%;
 
-    box-shadow: inset .5vw .5vh 2vh #0a0a0a;
+    box-shadow: inset .5vw .5vh 2vh var(--primary-shadow);
 
     font-size: 5vw;
 
     p {
-        text-shadow: 1vw 1vh 1vh #0a0a0a;
+        text-shadow: 1vw 1vh 1vh var(--primary-shadow);
     }
 }
 
@@ -121,10 +137,10 @@ button {
     /*background-color: var(--ctp-mocha-mantle);
     color: var(--ctp-mocha-text); */
 
-    background-color: var(--ctp-latte-mantle);
-    color: var(--ctp-latte-text);
+    background-color: var(--button-background);
+    color: var(--button-text);
 
-    border: 2px solid #45475a;
+    border: 2px solid ver(--border);
     border-radius: 50vh;
     text-align: center;
 
@@ -132,7 +148,7 @@ button {
 
     cursor: pointer;
 
-    box-shadow: .2vw .2vh 2vh #0a0a0a;
+    box-shadow: .2vw .2vh 2vh var(--primary-shadow);
 
     transition-duration: .1s;
 
@@ -143,29 +159,29 @@ button {
 
 button:hover {
     transform: scale(.95, .95);
-    box-shadow: .1vw .1vh 1vh #0a0a0a;
+    box-shadow: .1vw .1vh 1vh var(--primary-shadow);
 }
 
 button:active {
     font-size: .9vh;
     transform: scale(.89,.89);
-    box-shadow: inset .2vw .2vh 2vh #acb0be;
+    box-shadow: inset .2vw .2vh 2vh var(--secondary-shadow);
 }
 
 button.active {
     font-size: .9vh;
     transform: scale(.89,.89);
-    box-shadow: inset .2vw .2vh 2vh #acb0be;
+    box-shadow: inset .2vw .2vh 2vh var(--secondary-shadow);
 }
 
 button.active:hover {
     transform: scale(.85, .85);
-    box-shadow: inset .2vw .2vh 2vh #acb0be;
+    box-shadow: inset .2vw .2vh 2vh var(--secondary-shadow);
 }
 
 button.active:active {
     transform: scale(1.05, 1.05);
-    box-shadow: .3vw .3vh 3vh #0a0a0a;
+    box-shadow: .3vw .3vh 3vh var(--primary-shadow);
 }
 
 input[type=number] {
@@ -174,17 +190,17 @@ input[type=number] {
     appearance:         textfield;
 
 
-    background-color: var(--ctp-latte-mantle);
-    border: 2px solid #45475a;
+    background-color: var(--button-background);
+    border: 2px solid var(--border);
     border-radius: 50vh;
     text-align: center;
-    color: var(--ctp-latte-text);
+    color: var(--button-text);
 
     font-size: 1vh;
 
     font-weight: bold;
 
-    box-shadow: .2vw .2vh 2vh #0a0a0a;
+    box-shadow: .2vw .2vh 2vh var(--primary-shadow);
     transition-duration: .1s;
 
 
