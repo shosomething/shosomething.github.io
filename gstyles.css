@@ -1,0 +1,118 @@
+@import url('https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--ctp-mocha-crust);
+
+    color: var(--ctp-mocha-text);
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square-page {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 90vw;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+
+    background: var(--ctp-mocha-mantle);
+    border: 1px solid #45475a;
+    box-shadow: .5vw .5vh 2vh #0a0a0a;
+
+    border-radius: 2%;
+    overflow: hidden;
+}
+
+.note {
+    width: 47%;
+    aspect-ratio: 1/1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    background-color: #0a0a0a;
+
+    background: var(--ctp-mocha-crust);
+    border: 1px solid #45475a;
+    border-radius: 50%;
+
+    box-shadow: inset .5vw .5vh 2vh #0a0a0a;
+
+    font-size: 5vw;
+
+    p {
+        text-shadow: 1vw 1vh 1vh #0a0a0a;
+    }
+}
+
+.buttons {
+    position: absolute;
+
+    box-sizing: border-box;
+
+    bottom: 0%;
+    left: 0%;
+
+    width: 88vw;
+    height: 9vh;
+
+
+
+    margin: 1% 1% 1% 1%;
+
+}
+
+button {
+    background-color: var(--ctp-mocha-mantle);
+    border: 2px solid #45475a;
+    border-radius: 50vh;
+    text-align: center;
+    color: var(--ctp-mocha-text);
+
+    font-size: 1vh;
+
+    cursor: pointer;
+
+    box-shadow: .2vw .2vh 2vh #0a0a0a;
+
+    transition-duration: .1s;
+
+    margin-right: 1%;
+
+
+}
+
+button:hover {
+    transform: scale(.9, .9);
+    box-shadow: inset .1vw .1vh 1vh #0a0a0a;
+}
+
+button:active {
+    font-size: .9vh;
+    transform: scale(.89,.89);
+    box-shadow: inset .2vw .2vh 2vh #0a0a0a;
+}
