@@ -129,11 +129,13 @@ buttonChord.addEventListener("click",randomChord)
 
 buttonTimer.addEventListener("click", () => {
     
-    if (Number(timerBPMi.value) <= 0) {
-        return
-    }
 
     if (timer === null) {
+
+        if (Number(timerBPMi.value) <= 0) {
+            return
+        }
+
         const bpm = Number(timerBPMi.value);
         const mstime = (60000/bpm) * 4 ; //4 is beats per bar here
         const beattime = mstime / 4; //4 is that again, use this for visualisation
