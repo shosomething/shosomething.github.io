@@ -16,6 +16,8 @@ const timerBPMi = document.getElementById("bpm-input");
 
 const timeBeatsi = document.getElementById("beats-input");
 
+let windowVisible = true;
+
 let timer = null;
 let beatTimer = null;
 
@@ -43,6 +45,9 @@ function getRandomNote(sharps,previous) {
     let finalText = "";
 
     if (sharp == 1) { //sharp, calc if possible, calc flat ver, display
+
+        const showAsFlat = Math.random() < 0.25; //random bool, but sharps more often
+
         let sharpText = note.concat("", "♯")
         
         if (sharpText == "B♯" || sharpText == "E♯") {
@@ -52,6 +57,8 @@ function getRandomNote(sharps,previous) {
             let flatVariantN = ""
             let flatText = ""
 
+            finalText = finalText = sharpText
+
             if (note == "G") {
                 flatVariantN = "A"
             } else {
@@ -60,7 +67,10 @@ function getRandomNote(sharps,previous) {
 
             flatText = flatVariantN.concat("","♭")
 
-            finalText = sharpText.concat("/",flatText)
+            if (showAsFlat) {
+                finalText = flatText;
+            }
+
         }
         
     } else { //not sharp, just display
@@ -101,12 +111,26 @@ function randomNote() {
 function getRandomChord(previous) {
     let note = getRandomNote(false)
 
-    let minor = Math.round(Math.random()); //1 or 0
+    let minor = Math.floor(Math.random()); //1 or 0
+    let seventh = Math.floor(Math.random()*4) // 0 - no, 1 - maj7, 2 - m7, 3 - 7(dom) for now just with major chords
 
     let finalText = ""
 
     if (minor == 0) {
-        finalText = note.concat("","")
+        switch (seventh) {
+            case 0: //no seventh
+                finalText = note.concat("","")
+                break;
+            case 1: //maj7
+                finalText = note.concat("","maj7")
+                break;
+            case 2: //m7
+                finalText = note.concat("","m7")
+                break;
+            case 3: //dominant 7
+                finalText = note.concat("","7")
+                break;
+        }
     } else {
         finalText = note.concat("","m")
     }
@@ -130,6 +154,12 @@ function randomChord() {
 
     lastchord = chordsQueue[0];
 
+}
+
+function toggleWindow() {
+    windowVisible = !windowVisible;
+
+    previewText.style.display = windowVisible ? "block" : "none";
 }
 
 buttonNote.addEventListener("click", randomNote)
@@ -184,3 +214,4 @@ buttonTimer.addEventListener("click", () => {
         buttonTimer.classList.toggle("active");
     }
 })
+
